@@ -58,6 +58,14 @@ CREATE TABLE Authors
     middle_name VARCHAR(100) -- Добавлено поле для отчества
 );
 
+CREATE TABLE GenresAndAuthorsToBooks
+(
+    gen_and_auth_to_book_id SERIAL PRIMARY KEY,
+    book_id                 int REFERENCES Books (id),
+    user_id                 int REFERENCES Users (id),
+    author_id               int REFERENCES Authors (id)
+);
+
 CREATE TABLE Forums
 (
     id          int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -91,4 +99,54 @@ CREATE TABLE Reviews
     book_id        bigint REFERENCES Books(id),
     review_content VARCHAR(1000),
     send_date      TIMESTAMP
+);
+
+CREATE TABLE Works
+(
+    id          SERIAL PRIMARY KEY,
+    user_id     INT REFERENCES Users (id),
+    title       VARCHAR(255),
+    description TEXT,
+    file_url    VARCHAR(255),
+    create_date TIMESTAMP
+);
+
+CREATE TABLE WorkComments
+(
+    id SERIAL PRIMARY KEY,
+    work_id         INT REFERENCES Works (id),
+    user_id         INT REFERENCES Users (id),
+    content         VARCHAR(500),
+    send_date       TIMESTAMP
+);
+
+CREATE TABLE Games
+(
+    id   SERIAL PRIMARY KEY,
+    game_name VARCHAR(255)
+);
+
+
+CREATE TABLE Game_attributes
+(
+    id             SERIAL PRIMARY KEY,
+    attribute_name VARCHAR(100)
+);
+
+
+
+CREATE TABLE Game_attribute_values
+(
+    id                SERIAL PRIMARY KEY,
+    game_id           INT REFERENCES Games (id),
+    game_attribute_id INT REFERENCES Game_attributes (id),
+    value             VARCHAR(255)
+);
+
+CREATE TABLE PlayerToGames
+(
+    player_id SERIAL PRIMARY KEY,
+    user_id   INT REFERENCES Users (id),
+    game_id   INT REFERENCES Games (id),
+    score     int
 );

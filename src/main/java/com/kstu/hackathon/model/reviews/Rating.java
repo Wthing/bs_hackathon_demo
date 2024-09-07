@@ -1,6 +1,8 @@
-package com.kstu.hackathon.model;
+package com.kstu.hackathon.model.reviews;
 
 
+import com.kstu.hackathon.model.book.Book;
+import com.kstu.hackathon.model.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +30,6 @@ public class Rating implements Serializable {
     @JoinColumn(name = "book_id", nullable = false)
     private Book book;
 
-    @Column(nullable = false)
-    private int rate;
+    @Column(name = "rate", nullable = false)
+    private Integer rate;
 }

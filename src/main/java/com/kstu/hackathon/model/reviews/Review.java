@@ -1,5 +1,7 @@
-package com.kstu.hackathon.model;
+package com.kstu.hackathon.model.reviews;
 
+import com.kstu.hackathon.model.book.Book;
+import com.kstu.hackathon.model.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,12 +13,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "reviews")
+@Table(name = "Reviews")
 public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_seq")
     @SequenceGenerator(name = "review_seq", sequenceName = "review_seq", allocationSize = 1)
+    @Column(name = "id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

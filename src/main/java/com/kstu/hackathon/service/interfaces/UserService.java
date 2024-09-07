@@ -1,19 +1,8 @@
-package com.kstu.hackathon.service;
+package com.kstu.hackathon.service.interfaces;
 
-import com.kstu.hackathon.repo.UserRepo;
+import static com.kstu.hackathon.constants.regex.EMAIL_PATTERN;
 
-import java.util.regex.Pattern;
-
-public class UserService {
-    private final UserRepo userRepo;
-
-    private static final String EMAIL_REGEX = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$";
-
-    private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
-
-    public UserService(UserRepo userRepo) {
-        this.userRepo = userRepo;
-    }
+public interface UserService {
 
     /**
      * Validates if the provided email address is valid.

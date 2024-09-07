@@ -1,4 +1,4 @@
-package com.kstu.hackathon.model;
+package com.kstu.hackathon.model.user;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,14 +16,15 @@ public class SecretCode {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sc_seq")
-    @SequenceGenerator(name = "sc_seq", sequenceName = "sc_seq")
+    @SequenceGenerator(name = "sc_seq", sequenceName = "sc_seq", allocationSize = 1)
+    @Column(name = "id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id") // todo!!! check this shit
     private User user;
 
-    @Column(length = 4, nullable = false)
+    @Column(name = "code", length = 4, nullable = false)
     private String code;
 
     @Column(name = "create_date")

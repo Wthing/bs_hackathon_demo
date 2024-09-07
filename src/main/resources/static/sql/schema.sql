@@ -4,6 +4,7 @@ CREATE SEQUENCE sc_seq CACHE 20 CYCLE;
 CREATE SEQUENCE book_seq;
 CREATE SEQUENCE comment_seq CACHE 5;
 CREATE SEQUENCE review_seq;
+CREATE SEQUENCE rate_get CACHE 5 CYCLE;
 
 CREATE TABLE Users
 (
@@ -76,6 +77,7 @@ CREATE TABLE ForumComments
 
 CREATE TABLE Ratings
 (
+    id         bigint DEFAULT NEXTVAL('rate_get'),
     user_id    bigint REFERENCES Users(id),
     book_id    bigint REFERENCES Books(id),
     rate       int,

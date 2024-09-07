@@ -19,11 +19,14 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_gen")
+    @SequenceGenerator(name = "user_gen", sequenceName = "user_seq")
     private long id;
     private String firstName;
     private String lastName;
+    @Column(unique = true, length = 11)
     private String phoneNumber;
+    @Column(unique = true)
     private String email;
     private String password;
     private boolean isEmailConfirmed;

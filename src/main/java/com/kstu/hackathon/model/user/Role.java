@@ -1,6 +1,7 @@
 package com.kstu.hackathon.model.user;
 
 
+import com.kstu.hackathon.constants.Roles;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,13 +19,14 @@ public class Role implements GrantedAuthority {
     private Long id;
 
     @Column(name = "name")
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private Roles name;
 
     @OneToOne(mappedBy = "role")
     private User user;
 
     @Override
     public String getAuthority() {
-        return getName();
+        return String.valueOf(getName());
     }
 }
